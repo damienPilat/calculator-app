@@ -1,4 +1,4 @@
-import { createContext, PropsWithChildren, useState } from "react";
+import { createContext, type PropsWithChildren, useState } from "react";
 
 type DisplayContextType = {
   display: string;
