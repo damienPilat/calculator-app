@@ -10,5 +10,3 @@ function Display() {
   );
 }
 export default Display;
-
-// 3 + 5 * 6 - 2 / 4

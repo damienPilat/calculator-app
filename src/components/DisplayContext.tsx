@@ -17,6 +17,7 @@ const DisplayProvider = ({ children }: PropsWithChildren) => {
   const [total, setTotal] = useState(0);
 
   const resetState = () => {
+    setDisplay("0");
     setOperation("");
     setValue(0);
     setTotal(0);
@@ -44,24 +45,24 @@ const DisplayProvider = ({ children }: PropsWithChildren) => {
       setOperation(op);
       return "-1";
     } else {
-      const currentOp = op === "=" ? operation : op;
+      const currentOp = operation;
       const value2 = Number(prev.split(currentOp).slice(-1));
-      console.log(value2);
       const tempTotal = calculate(currentOp, value2);
-      console.log(tempTotal);
       setTotal(tempTotal);
       setValue(tempTotal);
+      setOperation(op);
       return tempTotal.toString();
     }
   };
 
-  const handleDecimal = (value) => {
-    return;
+  const handleDecimal = (value: string) => {
+    if (value.split("").slice(-1)[0] === ".") return value;
+    return value + ".";
   };
 
   const updateDisplay = (value: string) => {
     setDisplay((prev) => {
-      if (prev === "0") {
+      if (prev === "0" && [...Array(10).keys()].includes(Number(value))) {
         return value;
       }
       switch (value) {
